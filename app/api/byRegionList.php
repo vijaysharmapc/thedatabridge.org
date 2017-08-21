@@ -4,10 +4,10 @@ use \Psr\Http\Message\ResponseInterface as Response;
 require '../vendor/autoload.php';
 
 
-$app->get('/api/bycity', function (Request $request, Response $response) {
+$app->get('/api/byregion', function (Request $request, Response $response) {
    require 'dbconnect.php';
 
-   $sql = "SELECT * FROM ingestByCity_r order by id";
+   $sql = "SELECT * FROM ingestByRegion_r order by id";
 
    try{
     //GET DB OBJECT

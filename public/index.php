@@ -19,7 +19,7 @@ $app->get('/hello/{name}', function (Request $request, Response $response) {
 
 //Customers routes
 require '../app/api/byCityList.php';
-
+require '../app/api/byRegionList.php';
 $app->run();
 
 ?>
