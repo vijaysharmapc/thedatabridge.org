@@ -7,7 +7,7 @@ require '../vendor/autoload.php';
 $app->get('/api/byregiond', function (Request $request, Response $response) {
    require 'dbconnect.php';
 
-   $sql = "SELECT geoName,movie1,movie2 FROM ingestByRegion_r order by movie1 desc";
+   $sql = "SELECT geoName,movie1,movie2 FROM ingestByRegion_r  order by movie1 desc";
 
    try{
     //GET DB OBJECT
