@@ -17,10 +17,10 @@ function hk_contactus_post()
         success: function(response) {
             //alert(12);
             var obj = response;
-            //var status_value = obj['response'];
-            //alert(obj);
+
            if(obj == '0')
                {
+                 $("#response").append("SUCCESS");
                 //alert('success');
                }
            else
