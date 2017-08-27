@@ -62,9 +62,13 @@ this solved index .php issue
 	Require all granted
 </Directory>
 
-http://databridge.info/hello/ddd  works
+git status
+git add .
+git commit -m ""
+git push -u origin master
 
 
+http://databridge.info/hello/Vijay  works
 http://databridge.info/api/byregion
 http://databridge.info/api/bycity
 http://databridge.info/landing.html
