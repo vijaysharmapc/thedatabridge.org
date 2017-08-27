@@ -9,28 +9,11 @@
         'mapsApiKey': 'AIzaSyD-9tSrke72PouQMnMX-a7eZSW0jkFMBWY'
       });
       google.charts.load('current', { 'packages': ['corechart'] });
-      google.charts.setOnLoadCallback(drawRegionsMap);
-      google.charts.setOnLoadCallback(drawRegionsMap2);
-/*
-      function drawRegionsMap() {
-        var data = google.visualization.arrayToDataTable([
-          ['Country', 'Popularity'],
-          ['Germany', 200],
-          ['United States', 300],
-          ['Brazil', 400],
-          ['Canada', 500],
-          ['France', 600],
-          ['RU', 700],
-          ['INDIA', 410]
-        ]);
+      //google.charts.setOnLoadCallback(drawRegionsMap);
+      //google.charts.setOnLoadCallback(drawRegionsMap2);
+      google.charts.setOnLoadCallback(drawRegionsMap3);
+      google.charts.setOnLoadCallback(drawRegionsMap4);
 
-        var options = {};
-
-        var chart = new google.visualization.GeoChart(document.getElementById('regions_div'));
-
-        chart.draw(data, options);
-      }
-*/
 function drawRegionsMap() {
 
     $.ajax({
@@ -115,6 +98,95 @@ function drawRegionsMap2() {
 
 
 
+
+//BY CITY
+
+
+function drawRegionsMap3() {
+
+    $.ajax({
+    type: 'GET',
+    url: 'http://databridge.info/api/bycity',
+
+  success: function (data1) {
+   //alert (data1);
+    // Create our data table out of JSON data loaded from server.
+    var data = new google.visualization.DataTable();
+
+  data.addColumn('string', 'city');
+  data.addColumn('number', 'baahubali');
+//  data.addColumn('number', 'dangal');
+
+  var jsonData = $.parseJSON(data1);
+ //alert (data1);
+  for (var i = 0; i < jsonData.length; i++) {
+    if (parseInt(jsonData[i].movie2) > 0) {
+        data.addRow([jsonData[i].geoName, parseInt(jsonData[i].movie1)]);
+    }
+  }
+
+  //alert (data);
+  var options = {
+    sizeAxis: { minValue: 0, maxValue: 100 },
+    region: 'IN',
+    title: 'bahubali  reach',
+    displayMode: 'markers',
+    colorAxis: {colors: ['brown','red']} // orange to blue
+  };
+
+  //var options = {};
+//https://www.telegraphindia.com/1170704/jsp/frontpage/story_160126.jsp
+  var chart = new google.visualization.GeoChart(document.getElementById('regions_div3'));
+
+  chart.draw(data, options);
+   }
+ });
+}
+
+function drawRegionsMap4() {
+
+    $.ajax({
+    type: 'GET',
+    url: 'http://databridge.info/api/bycity',
+
+  success: function (data1) {
+   //alert (data1);
+    // Create our data table out of JSON data loaded from server.
+    var data = new google.visualization.DataTable();
+
+  data.addColumn('string', 'city');
+  data.addColumn('number', 'dangal');
+//  data.addColumn('number', 'dangal');
+
+  var jsonData = $.parseJSON(data1);
+ //alert (data1);
+  for (var i = 0; i < jsonData.length; i++) {
+    if (parseInt(jsonData[i].movie2) > 0) {
+        data.addRow([jsonData[i].geoName, parseInt(jsonData[i].movie2)]);
+    }
+  }
+
+  //alert (data);
+  var options = {
+    sizeAxis: { minValue: 0, maxValue: 100 },
+    region: 'IN',
+    title: 'Dangal  reach',
+    displayMode: 'markers',
+    colorAxis: {colors: ['brown','red']} // orange to blue
+  };
+
+  //var options = {};
+//https://www.telegraphindia.com/1170704/jsp/frontpage/story_160126.jsp
+  var chart = new google.visualization.GeoChart(document.getElementById('regions_div4'));
+
+  chart.draw(data, options);
+   }
+ });
+}
+
+
+
+
     </script>
   </head>
   <body>
@@ -122,6 +194,8 @@ function drawRegionsMap2() {
     <div id="regions_div" style="width: 800px; height: 400px;"></div>
     <p>Dangal's reach</p>
     <div id="regions_div2" style="width: 800px; height: 400px;"></div>
+      <div id="regions_div3" style="width: 800px; height: 400px;"></div>
+        <div id="regions_div4" style="width: 800px; height: 400px;"></div>
   </body>
 
   <script src="bootstrap-3.3.5/jquery/jquery-3.2.1.min.js"></script>

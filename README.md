@@ -63,3 +63,9 @@ this solved index .php issue
 </Directory>
 
 http://databridge.info/hello/ddd  works
+
+
+http://databridge.info/api/byregion
+http://databridge.info/api/bycity
+http://databridge.info/landing.html
+http://databridge.info/api/messageadd?name=vijay&email=vijapdffy@gmail.com&contact=777888888&message=hello guys

@@ -21,6 +21,7 @@ $app->get('/hello/{name}', function (Request $request, Response $response) {
 require '../app/api/byCityList.php';
 require '../app/api/byRegionList.php';
 require '../app/api/byRegionListd.php';
+require '../app/api/saveMessage.php';
 $app->run();
 
 ?>
