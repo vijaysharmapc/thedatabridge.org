@@ -37,14 +37,7 @@
             <li class="nav-item">
               <a class="nav-link" href="#">About</a>
             </li>
-            <!--
-            <li class="nav-item">
-              <a class="nav-link" href="#">Services</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Contact</a>
-            </li>
-          -->
+
           </ul>
         </div>
       </div>
@@ -70,7 +63,7 @@
           <hr>
 
           <!-- Date/Time -->
-          <p>Posted on January 1, 2017 at 12:00 PM</p>
+          <p>Posted on Sep 1, 2017 at 12:00 PM</p>
 
           <hr>
 
@@ -79,50 +72,191 @@
 
           <hr>
 
-          <!-- Post Content -->
-          <h2>TERADATA OLAP FUNCTIONS</h2>
-          <p class="lead">OLAP stands for Online Analytical Processing. OLAP performs multidimensional analysis of business data and provides the capability for complex calculations, trend analysis, and sophisticated data modeling.</p>
+          <h2> TERADATA FUNCTIONS AND OLAP:</h2>
+          <p class="lead">Teradata has been in the data managment business for quiet some time now,their platform is made up of Teradata Data Warehouse,Database,set of analytic tools and Big Data.
+          In this blog we would focus on Analytical functions and OLAP,we will try and cover things beyond the SUM ,COUNT,MAX,MIN and other commonly used functions.</p>
+          <h3> Audience & Content Source: </h3>
+          <p class="lead">Application programmers,administrators and end users are the principal audience for this blog.Other technical personnel responsible for designing, maintaining, and using Teradata
+          Database might also find this manual to be useful.A lot of content has been sourced form db books and Teradata manuals.</p>
 
-          <p>OLAP can be used for data mining or the discovery of previously undiscerned relationships between data items.</p>
+          <h3>DATA FUNCTIONS</h3>
+          <p class="lead">ABS:</p> <p>Computes the absolute value of an argument.</p>
+          <div class = "code-snippet">
+          <pre><code>
+          SELECT ABS(5-10);
+          5
+          </code></pre>
+          </div>
 
-          <p> Ordered analytical functions provide support for many common operations in analytical
-          processing and data mining environments that require an ordered set of results rows or
-          depend on values in a previous row.
-          For example, computing a seven-day running sum requires:</p>
-          <ul> •First, that rows be ordered by date.</ul>
-          <ul> • Then, the value for the running sum must be computed</ul>
-          <ul> • Adding the current row value to the value of the sum from the previous row</ul>
-          <ul> • And Subtracting the value from the row eight days ago.</p>
 
-  <div class = "code-snippet">
-  <pre><code>SELECT gender, marital_status, xcnt,xpct
-,CSUM(xcnt, xcnt DESC, gender, marital_status) AS xcum_cnt
-,CSUM(xpct, xcnt DESC, gender, marital_status) AS xcum_pct
-,RANK(xcnt DESC, gender ASC, marital_status ASC) AS xrank
-FROM
-(SELECT gender, marital_status, COUNT(*) AS xcnt
-,100.000 * xcnt / xall (FORMAT 'ZZ9.99') AS xpct
-FROM customer_table A,
-(SELECT COUNT(*) AS xall
-FROM customer_table) B
-GROUP BY gender, marital_status, xall
-HAVING xpct >= 1) T1
-QUALIFY xrank <= 8
-ORDER BY xcnt DESC, gender, marital_status; </code></pre>
-  </div>
-    <pre><code>
-  <samp class="output">
-     |gender| marital_status| xcnt   |  xpct| xcum_cnt |xcum_pct  |xrank
-     |F     | Married       | 3910093| 36.71| 3910093  |36.71     |1
-     |M     | Married       | 2419511| 22.71| 6329604  |59.42     |2
-     |F     | Divorced      | 1612130| 15.13| 7941734  |74.55     |3
-     |M     | Divorced      | 1412624| 3.26 | 9354358  |87.81     |4
-     |F     | Single        | 491224 |4.61  | 9845582  |92.42     |5
-     |F     | Widowed       | 319881 |3.01  | 10165463 |95.43     |6
-     |M     | Single        | 319794 |3.00  | 10485257 |98.43     |7
-     |M     | Widowed       | 197131 |1.57  | 10652388 |100.00    |8
-  </samp>
+          <p>This comes handy when we need to apply business rules, and are have to eliminate negative values.</p>
+          <p class="lead">FLOOR: </p> <p>Returns the following values:
+          the next largest integer that is equal to or less than arg.
+          The input argument arg in case of exact number.CEILING Returns the smallest integer that is not less than the input argument.</p>
+          <div class = "code-snippet">
+          <pre><code>
+          SELECT CEILING(10.455);
+          11
+          SELECT FLOOR(6.5);
+          6
+          </code></pre>
+          </div>
+
+          <p class="lead">Dealing with Nulls:</p> <p> In this example, you can test the Salary column for null.</p>
+          <div class = "code-snippet">
+          <pre><code>
+          SELECT empno, ZEROIFNULL(salary)
+          FROM employee ;
+          All NULL values in the salary field will be relaced by 0 in the result-set.
+          </code></pre>
+          </div>
+
+          <p class="lead">DATE MANIPULATIONS:</p>
+          <p>Adding DAY/MONTH/YEAR TO A DATE</p>
+          <div class = "code-snippet">
+          <pre><code>
+          SELECT DATE '2017-10-28' + INTERVAL '1' DAY;
+          29/10/2017
+
+          SELECT DATE '2017-10-28' + INTERVAL '1' MONTH;
+          28/11/2017
+
+          SELECT DATE '2017-10-28' + INTERVAL '1' YEAR;
+          28/10/2018
+          </code></pre>
+          </div>
+
+          <p class="lead">CASE EXPRESSION:</p>
+          <p>We have an example that shows how using a CASE expression can result in significantly
+          enhanced performance by eliminating multiple passes over the data. Without using CASE,
+          you would have to perform multiple queries for each region and then consolidate the answers
+          to the individual queries in a final report.</p>
+
+          <div class = "code-snippet">
+          <pre><code>
+          SELECT item_number, SUM(CASE
+          WHEN Class_desc='JUICE'
+          THEN xsa_saved_nws
+          ELSE 0
+          END) AS JUICE,
+          SUM(CASE
+          WHEN Class_desc='SNACKS'
+          THEN xsa_saved_nws
+          ELSE 0
+          END) AS SNACKS,
+          SUM(CASE
+          WHEN Class_desc LIKE 'LIQUID MILK'
+          THEN xsa_saved_nws
+          ELSE 0
+          END)
+          AS MILK, MILK/SUM(xsa_saved),
+          SUM(xsa_saved)
+          FROM db.store_data_set
+          WHERE item_number IN ('P20000511','P10069661','P10370319','P10370320','P10370381')
+
+          GROUP BY item_number;
+          </code></pre>
+          </div>
+
+
+<img class="img-fluid rounded" src="pictures/case.png" alt=""> </img>
+
+<p> </p>
+<p class="lead">CASE IN PARTITIONING:</p>
+<p>Here is an example that uses CASE_N and the value of the totalorders column to define the partition to which a row is assigned:</p>
+<div class = "code-snippet">
+<pre><code>
+ CREATE TABLE orders
+  (storeid INTEGER NOT NULL
+  ,productid INTEGER NOT NULL
+  ,orderdate DATE FORMAT 'yyyy-mm-dd' NOT NULL
+  ,totalorders INTEGER)
+  PRIMARY INDEX (storeid, productid)
+  PARTITION BY CASE_N(totalorders < 100, totalorders < 1000,
+  NO CASE, UNKNOWN);
+
+<p> In the example, CASE_N specifies four partitions to which a row can be assigned, based on the
+value of the totalorders column.</p>
+
 </code></pre>
+</div>
+
+<h2>Teradata Warehouse Miner </h2>
+<p class="lead">includes approximately 40 predefined data mining functions in
+SQL based on the Teradata SQL-specific functions. For example, the Teradata Warehouse
+Miner FREQ function uses the Teradata SQL-specific functions RANK,CSUM and QUALIFY
+to determine frequencies.</p>
+
+<p class="lead">DENSE_RANK:</p>
+<p>Calculates the number of proceeding distinct values, plus one. If multiple rows have
+equal values, they all get the same rank, but there are no gaps. Each change in data value causes the
+ranking number to be incremented by one. Its not implemented in Teradata (probably because of performance reasons), but can be rewritten.
+For example in normal Ranking operation if two items have same marks, they both would be given the same Rank, say 1.Now the next item would be given Rank 3 in regular ranking operation.
+In Dense Rank this item would be given Rank 2.</p>
+<div class = "code-snippet">
+<pre><code>
+  SELECT
+  item_number,
+  sales,
+  DENSE_RANK() OVER (PARTITION BY offer_number ORDER BY sales) as DNS_RNK
+  FROM
+  DB.ntnl_fcasts
+  order by DNS_RNK;
+</code></pre>
+</div>
+
+<pre><code>
+<samp class="output">
+item_number	|sales|	DNS_RNK
+P20001828	  |0.222|	1
+P20001828	  |0.222|	1
+P10069349	  |0.418|	2
+P10069349	  |0.418|	2
+P10069349	  |0.764|	3
+P10069349	  |0.764|	3
+P10069349	  |0.818|	4
+P10069349	  |0.818|	4
+P10069349	  |0.866|	5
+</samp>
+</code></pre>
+
+In  Rank this item would not be given Rank 2 & 3.</p>
+<div class = "code-snippet">
+<pre><code>
+  SELECT
+  item_number,
+  sales,
+  RANK() OVER (PARTITION BY offer_number ORDER BY sales) as DNS_RNK
+  FROM
+  DB.ntnl_fcasts
+  order by RNK;
+</code></pre>
+</div>
+
+<pre><code>
+<samp class="output">
+  item_number	  sales	RNK
+  P20001828	      5	  1
+  P20001828	      5	  1
+  P20001828	      5	  1
+  P20001828	      6	  4
+  P10069349	      6	  4
+  P10069349	      12  7
+</samp>
+</code></pre>
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 <!--          <blockquote class="blockquote">
