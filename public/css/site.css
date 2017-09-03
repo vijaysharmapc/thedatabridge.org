@@ -49,10 +49,11 @@
   height: 100%;
   padding: 10px;
   width: auto;
-
-
 /*  margin-left:-30px ;*/
 }
+
+
+
 /*
 .navbar{
     background-color:#FFFFF0;
@@ -75,6 +76,9 @@
 
 
 
+.carousel-caption h1{
+      font-size: 60px;
+}
 
 /*
 .slide2{
