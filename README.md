@@ -73,3 +73,8 @@ http://databridge.info/api/byregion
 http://databridge.info/api/bycity
 http://databridge.info/landing.html
 http://databridge.info/api/messageadd?name=vijay&email=vijapdffy@gmail.com&contact=777888888&message=hello guys
+
+
+
+##db:
+sudo mysqldump -uroot -proot moviereview > /home/vijay/moviereview.sql

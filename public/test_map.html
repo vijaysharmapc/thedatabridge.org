@@ -9,11 +9,12 @@
         'mapsApiKey': 'AIzaSyD-9tSrke72PouQMnMX-a7eZSW0jkFMBWY'
       });
       google.charts.load('current', { 'packages': ['corechart'] });
-      //google.charts.setOnLoadCallback(drawRegionsMap);
-      //google.charts.setOnLoadCallback(drawRegionsMap2);
+      google.charts.setOnLoadCallback(drawRegionsMap);
+      google.charts.setOnLoadCallback(drawRegionsMap2);
       google.charts.setOnLoadCallback(drawRegionsMap3);
       google.charts.setOnLoadCallback(drawRegionsMap4);
 
+//BY REGION
 function drawRegionsMap() {
 
     $.ajax({
@@ -41,7 +42,7 @@ function drawRegionsMap() {
   //alert (data);
   var options = {
     sizeAxis: { minValue: 0, maxValue: 100 },
-    title: 'Baahubali -2  reach',
+    title: 'Baahubali -2\'s  reach',
     displayMode: 'markers',
     colorAxis: {colors: ['green','blue']} // orange to blue
   };
@@ -82,7 +83,7 @@ function drawRegionsMap2() {
   //alert (data);
   var options = {
     sizeAxis: { minValue: 0, maxValue: 100 },
-        title: 'Dangal  reach',
+        title: 'Dangal\'s  reach',
     displayMode: 'markers',
     colorAxis: {colors: ['brown','red']} // orange to blue
   };
@@ -131,7 +132,7 @@ function drawRegionsMap3() {
     region: 'IN',
     title: 'bahubali  reach',
     displayMode: 'markers',
-    colorAxis: {colors: ['brown','red']} // orange to blue
+    colorAxis: {colors: ['green','blue']} // orange to blue
   };
 
   //var options = {};

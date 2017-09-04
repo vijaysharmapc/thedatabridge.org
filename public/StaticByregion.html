@@ -10,6 +10,7 @@
 <meta name="viewport" content="width = device-width, initial-scale = 1">
 <title>Bootstrap Tutorial</title>
 <link rel="stylesheet" type="text/css" href="bootstrap-3.3.5/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="css/site.css">
 
 
 </head>
@@ -23,13 +24,28 @@
   <hr>
   <div id="line_chart"></div>
   <hr>
-  <p>Baahubali 2's reach</p>
-  <div id="regionschart1" style="width: 800px; height: 400px;"></div>
+  <p>Baahubali 2's Global Popularity</p>
+  <div id="regionschart1" style="width: 600px; height: 300px;"></div>
   <hr>
-  <p>Dangal's reach</p>
-  <div id="regionschart2" style="width: 800px; height: 400px;"></div>
+  <p>Dangal's Global Popularity</p>
+  <div id="regionschart2" style="width: 600px; height: 300px;"></div>
+<hr>
 
   </div>
+  </div>
+
+  <div class="container">
+      <div class="row">
+          <div class="col-xs-5">
+            <p>Baahubali 2's India Popularity</p>
+            <div id="citychart1" style="width: 600px; height: 400px;"></div>
+          </div>
+          <div class="col-xs-2"></div>
+          <div class="col-xs-5">
+            <p>Dangal's India Popularity</p>
+            <div id="citychart2" style="width: 600px; height: 400px;"></div>
+          </div>
+      </div>
   </div>
 
 
@@ -62,6 +78,6 @@
 
   <script src="bootstrap-3.3.5/jquery/jquery-3.2.1.min.js"></script>
   <script src="bootstrap-3.3.5/dist/js/bootstrap.min.js"></script>
-  <script type="text/javascript" src="chart.js"></script>
+  <script type="text/javascript" src="staticChart.js"></script>
   </body>
   </html>
