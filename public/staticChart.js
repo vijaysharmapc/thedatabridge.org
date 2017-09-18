@@ -54,7 +54,7 @@ google.charts.load('current', {
     'packages':['geochart'],
     // Note: you will need to get a mapsApiKey for your project.
     // See: https://developers.google.com/chart/interactive/docs/basic_load_libs#load-settings
-    'mapsApiKey': 'AIzaSyD-9tSrke72PouQMnMX-a7eZSW0jkFMBWY'
+    'mapsApiKey': 'AIzaSyDJEVHpdrrT-pwLVT2-kw2xBzZKpXv1cfY'
   });
 //  google.charts.setOnLoadCallback(drawRegionsMap1);
 //  google.charts.setOnLoadCallback(drawRegionsMap2);
@@ -90,7 +90,7 @@ var data = google.visualization.arrayToDataTable([
 
     var options = {
       sizeAxis: { minValue: 0, maxValue: 100 },
-      //region: 'IN',
+      //region: 'IN',regions,markers
       title: 'Dangal  reach',
       displayMode: 'markers',
       colorAxis: {colors: ['red','brown']} // orange to blue
@@ -145,6 +145,7 @@ var data = google.visualization.arrayToDataTable([
     chart.draw(data, options);
     //BAAHUBALI City
   }
+
   function drawCityMap1() {
   var data = google.visualization.arrayToDataTable([
   ['City', 'Popularity'],
@@ -246,9 +247,11 @@ var data = google.visualization.arrayToDataTable([
   ]);
 
       var options = {
+
         sizeAxis: { minValue: 0, maxValue: 100 },
         region: 'IN',
         title: 'Dangal  reach',
+//regions/markers
         displayMode: 'markers',
         colorAxis: {colors: ['green','teal']}, // orange to blue
         domain: 'IN',
