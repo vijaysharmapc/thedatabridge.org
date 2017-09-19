@@ -145,6 +145,8 @@
 
 
 /* charts */
-#citychart2{
-  height:100px;
+
+.chart {
+  width: 100%;
+  min-height: 450px;
 }
