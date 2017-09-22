@@ -11,7 +11,7 @@ require 'dbconnect.php';
 
 $name = $request->getParam('name');
 $email = $request->getParam('email');
-$contact = $request->getParam('phone');
+$phone = $request->getParam('contact');
 $message = $request->getParam('message');
 
 

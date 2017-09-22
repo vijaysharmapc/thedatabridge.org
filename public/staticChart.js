@@ -13,26 +13,30 @@ function drawChart() {
 
     $.ajax({
     type: 'GET',
-    url: 'http://databridge.info/api/byregiond',
+    url: 'http://databridge.info/api/bymvg',
 
   success: function (data1) {
-   //alert (data1);
+     //alert (data1);
     // Create our data table out of JSON data loaded from server.
     var data = new google.visualization.DataTable();
 
-  data.addColumn('string', 'country');
-  data.addColumn('number', 'bahubali');
-  data.addColumn('number', 'dangal');
+  data.addColumn('string', 'WEEK_NUMBER');
+  data.addColumn('number', 'BAAHUBALI-II');
+  data.addColumn('number', 'DANGAL');
 
   var jsonData = $.parseJSON(data1);
 
   for (var i = 0; i < jsonData.length; i++) {
-        data.addRow([jsonData[i].geoName, parseInt(jsonData[i].movie1), parseInt(jsonData[i].movie2)]);
+        data.addRow([jsonData[i].week_number, parseInt(jsonData[i].movie1), parseInt(jsonData[i].movie2)]);
   }
   var options = {
     chart: {
       title: 'Movie Performance',
-      subtitle: 'Show Interest by Country'
+      subtitle: 'Show\'s moving average of interest over time- week0 is the release week'
+    },
+    boxStyle: {
+      // Color of the box outline.
+      stroke: '#1B2631'
     },
     width: 900,
     height: 500,
@@ -161,7 +165,6 @@ var data = google.visualization.arrayToDataTable([
   ['Guntur',76],
   ['Gurgaon',15],
   ['Guwahati',44],
-  ['Homagama',9],
   ['Howrah',26],
   ['Hyderabad',66],
   ['Indore',56],
@@ -218,7 +221,6 @@ var data = google.visualization.arrayToDataTable([
     ['Dehradun',22],
     ['Gurgaon',9],
     ['Guwahati',24],
-    ['Homagama',1],
     ['Howrah',11],
     ['Hyderabad',10],
     ['Indore',36],

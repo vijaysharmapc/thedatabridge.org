@@ -20,11 +20,14 @@ function hk_contactus_post()
 
            if(obj == '0')
                {
-                 $("#response").append("SUCCESS");
+								 $('#response').empty();
+                 $("#response").append("MESSAGE SENT SUCCESSFULLY");
                 //alert('success');
                }
            else
                {
+								  $('#response').empty();
+								  $("#response").append("MESSAGE SENDING FAILED");
                 //alert('fail');
                }
 
