@@ -150,3 +150,7 @@
   width: 100%;
   min-height: 450px;
 }
+
+#regionschart1,#regionschart2{
+  border-style: solid;
+}

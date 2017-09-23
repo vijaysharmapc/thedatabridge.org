@@ -33,10 +33,10 @@ function drawChart() {
   }
   var options = {
     chart: {
-      title: 'Movie Performance',
-      subtitle: 'Show\'s moving average of interest over time- week0 is the release week'
+      title: 'Movie\'s popularity over a 26 week period ',
+      subtitle: 'week0 is the release week,week-9 is 9 weeks before release & week16 is 16 weeks after'
     },
-    width: 500,
+    width: 600,
     height: 400,
     lineWidth: 50,
     axes: {
@@ -63,7 +63,7 @@ function drawTable() {
     // Create our data table out of JSON data loaded from server.
     var data = new google.visualization.DataTable();
 
-  data.addColumn('string', 'WEEK_NUMBER');
+  data.addColumn('string', 'WEEK');
   data.addColumn('number', 'BAAHUBALI-II');
   data.addColumn('number', 'DANGAL');
 
@@ -84,20 +84,6 @@ function drawTable() {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 //geo world
 google.charts.load('current', {
     'packages':['geochart'],
@@ -105,10 +91,10 @@ google.charts.load('current', {
     // See: https://developers.google.com/chart/interactive/docs/basic_load_libs#load-settings
     'mapsApiKey': 'AIzaSyDJEVHpdrrT-pwLVT2-kw2xBzZKpXv1cfY'
   });
-//  google.charts.setOnLoadCallback(drawRegionsMap1);
-//  google.charts.setOnLoadCallback(drawRegionsMap2);
-//  google.charts.setOnLoadCallback(drawCityMap1);
-//  google.charts.setOnLoadCallback(drawCityMap2);
+  google.charts.setOnLoadCallback(drawRegionsMap1);
+  google.charts.setOnLoadCallback(drawRegionsMap2);
+  google.charts.setOnLoadCallback(drawCityMap1);
+  google.charts.setOnLoadCallback(drawCityMap2);
 
 //BAAHUBALI
 function drawRegionsMap1() {
@@ -119,10 +105,10 @@ var data = google.visualization.arrayToDataTable([
 ['Bolivia',5],
 ['Canada',1],
 ['China',8],
-['India',100],
+['India',80],
 ['Kuwait',16],
 ['Malaysia',6],
-['Nepal',75],
+['Nepal',55],
 ['Nigeria',5],
 ['Oman',17],
 ['Pakistan',15],
@@ -142,7 +128,9 @@ var data = google.visualization.arrayToDataTable([
       //region: 'IN',regions,markers
       title: 'Dangal  reach',
       displayMode: 'markers',
-      colorAxis: {colors: ['red','brown']} // orange to blue
+      colorAxis: {colors: ['red','brown']}, // orange to blue
+      //defaultColor: '#f5f5f5'
+      //backgroundColor: '#F2F4F4'
     };
 
     var chart = new google.visualization.GeoChart(document.getElementById('regionschart1'));
@@ -186,7 +174,9 @@ var data = google.visualization.arrayToDataTable([
       //region: 'IN',
       title: 'Dangal  reach',
       displayMode: 'markers',
-      colorAxis: {colors: ['black','blue']} // orange to blue
+      colorAxis: {colors: ['green','teal']}, // orange to blue
+      //backgroundColor: '#F2F4F4'
+      //defaultColor: '#f5f5f5'
     };
 
     var chart = new google.visualization.GeoChart(document.getElementById('regionschart2'));

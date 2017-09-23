@@ -4,6 +4,9 @@
 <head>
 	<meta charset="utf-8">
 	<title>The Data Bridge</title>
+	<!-- If IE use the latest rendering engine -->
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 	<meta name="description" content="TheDataBridge App">
 	<meta name="viewport" content="width = device-width, initial-scale = 1">
 	<!-- Latest compiled and minified CSS -->
@@ -39,12 +42,12 @@
 			</div><!-- Navbar Header-->
 			<div class="collapse navbar-collapse" id="navbar-collapse">
 
-				<a class="navbar-brand navbar-left" id= "logo" href="" ><img src="pictures/LOGO.jpg" alt="mylogo" height="35" width="75">
+				<a class="navbar-brand navbar-left" id= "logo" href="" ><img src="pictures/LOGO.png" alt="mylogo" height="35" width="75">
 				</a>
 				<ul class="nav navbar-nav">
 						<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">CASE STUDY <span class="caret"></span></a>
 			 			 <ul class="dropdown-menu" role="menu">
-			 				<li><a href="#">Biggest Indian Movie</a></li>
+			 				<li><a href="#">Biggest Indian Movies</a></li>
 			 				<li><a href="#">Sub Menu2</a></li>
 			 				<li class="divider"></li>
 			 				<li><a href="#">Sub Menu4</a></li>
@@ -60,218 +63,169 @@
   	<!-- jumbotron-->
   	<div class="jumbotron">
   		<div class="container text-center">
-  			<h1>BIGGEST INDIAN MOVIE EVER?</h1>
-  			<p id="leftalign">Not very long back &#8377; 100 Crore(&#8377;1 Billion) was a big milstone for any movie in India.This seem to have changed recently.
-					 While some sections of media claim BAAHUBALI:2 as the biggest movie,others claim, DANGAL is the biggest Indian movie by revenue.
-					 Let's dig in and find out- which is the "BIGGEST INDIAN MOVIE EVER AND WHY ?" </p>
+  			<h1>MOST POPULAR INDIAN MOVIES EVER</h1>
+  			<p id="leftalign">Not very long back &#8377; 100 Crore(&#8377;1 Billion) was a big milestone for any movie in India.This seem to have changed recently.
+					 While some sections of media claim BAAHUBALI-II as the biggest movie,others claim, DANGAL is the biggest Indian movie by revenue.
+					 They are both block-buster movies lets find-out <b>the reason for their unprecedented success and which of the two has been more popular in India and abroad.</b> </p>
 
-  			<div class="btn-group">
-  				<a href="" class="btn btn-lg btn-warning">NATIONAL TRENDS&nbsp;</a>
-  				<a href="" class="btn btn-lg btn-default">TIME SERIES</a>
-  				<a href="" class="btn btn-lg btn-warning">GLOBAL TRENDS</a>
+  			<div class="btn-group" >
+  				<a href="#citycharheading" class="btn btn-lg btn-warning">NATIONAL TRENDS&nbsp;</a>
+  				<a href="#" class="btn btn-lg btn-default">TIME SERIES</a>
+  				<a href="#regionheading" class="btn btn-lg btn-warning">GLOBAL TRENDS</a>
   			</div>
   		</div><!-- End container -->
   	</div><!-- End jumbotron-->
 
 
-<!-- features -->
-
-	<div class="container">
-		<section>
-			<div class="page-header" id="features">
-  				<h2>Data Cycle<small> Just like a lot of other good things,data needs to pass through a few stages before it is really  useful !</small></h2>
-  			</div>
-				<!-- End Page Header -->
-
-  			<!-- Section: services -->
-			    <section id="service" class="home-section color-dark bg-gray">
-
+		    <div class="container">
+		        <div class="row">
+		            <div class="col-md-5">
+		              <div id="line_chart" style="width: 500px; height: 400px;"></div>
+		            </div>
+		            <div class="col-md-1"></div>
+		            <div class="col-md-5">
+		              <p>Popularity over normalised time line</p>
+		              <div id="line_table"></div>
+		            </div>
+		        </div>
+		    </div>
+			<div class="container">
+				 <section>
+					 &nbsp
+           <p> We measured the popularity of these two movies pan-India,and took a weighted moving average to get a smooth trendline.
+					 The trailers of both these movies were well received.Positive word of mouth after the week0(release-week) has helped both get a lot of new views and favourable media coverage.
+          </p>
 				</section>
-
-  			<div class="row">
-  				<div class="col-sm-4">
-  					<div class="panel panel-default text-center">
-  						<div class="panel-body">
-  							<span class="glyphicon glyphicon-search"></span>
-  							<h4>DATA IDENTIFICATION</h4>
-  							<p class="align-left">Data describes a real-world situation that is important to your or your organisation. Data tells us about things, people, products, items, customers, assets, records and more.
-The problem is: finding out and keeping what matters to you or your application.Identifying data is an iterative process.At first, you may just know some vague, high-level details but spending time at this phase  definitely helps in the long run.
-</p>&nbsp
-  						</div>
-  					</div>
-  				</div>
-
-  				<div class="col-sm-4">
-  					<div class="panel panel-default text-center">
-  						<div class="panel-body">
-  							<span class="glyphicon glyphicon-thumbs-up"></span>
-  							<h4>DATA PREPERATION</h4>
-  							<p class="align-left"> Once you know what data could help you or your organisation, we start with the data preparation process .This involves collecting, cleaning,handling inconsistent data and finally consolidating it.Although it looks much better than the last step
-								,there is still some more effort needed before you can put it to good use.This step is very important as our data strategy becomes very clear,along with the data that we have been punching along, we separate what we need from what we don't. </p>
-  						</div>
-  					</div>
-  				</div>
-
-  				<div class="col-sm-4">
-  					<div class="panel panel-default text-center">
-  						<div class="panel-body">
-  							<span class="glyphicon glyphicon-stats"></span>
-  							<h4>ANALYSIS & REPORTING</h4>
-  							<p class="align-left">Here it is time to feel good about the work we have already done and  start exploring the data and reports in order to extract meaningful insights, which can be used to better understand and improve business performance.
-Reporting is the process of organising this data into informational summaries in order to monitor how different areas of a business are performing.</p> &nbsp <p> </p>
-  						</div>
-  					</div>
-  				</div>
-  			</div><!-- end row -->
-
-		</section>
-	</div><!-- End Container -->
+		  </div>
 
 
-<!-- Faq -->
+     <p id="citycharheading"> </p>&nbsp
+		  <div class="container" >
+		      <div class="row">
+		          <div class="col-md-5">
+		            <p>Baahubali II's India Popularity</p>
+		            <div id="citychart1" style="width: 500px; height: 400px;"></div>
+		          </div>
+		          <div class="col-md-1"></div>
+		          <div class="col-md-5">
+		            <p>Dangal's India Popularity</p>
+		            <div id="citychart2" style="width: 500px; height: 400px;"></div>
+		          </div>
+		      </div>
+		  </div>
+			<div class="container">
+				 <section>
+					 &nbsp
+           <p> Unlike other Indian movies their popularity is not restricted to certain regions or cities <b>they are both pan India Block-Busters. </b>
+         Out of these two BAAHUBALI-II takes the lead in India,it was very well received across all major cities in India</p>
+			 </section>
+		 </div>
 
-    <div class="container">
-      <section>
-        <div class="page-header" id="faq">
-          <h2>FAQ.<small> </small></h2>
-        </div><!-- End Page Header -->
 
-        <div class="panel-group" id="accordion">
-          <div class="panel panel-default">
-            <div class="panel-heading">
-              <div class="panel-title">
-                <a href="#collapse-1" data-toggle="collapse" data-parent="#accordion">
-                  Is my data in safe hands?
-                </a>
-              </div><!-- End panel title -->
-              <div id="collapse-1" class="panel-collapse collapse in">
-                <div class="panel-body">
-                  We take utmost care to mask sensitive data,no information leaves your premise without being masked or generalised.
-                </div>
-              </div><!-- End Panel collapse -->
-            </div>
-          </div>
+     <p id="regionheading"> </p>&nbsp
 
-          <div class="panel panel-default">
-            <div class="panel-heading">
-              <div class="panel-title">
-                <a href="#collapse-2" data-toggle="collapse" data-parent="#accordion">
-                  How much can I save by investing in - building a data strategy?
-                </a>
-              </div><!-- End panel title -->
-              <div id="collapse-2" class="panel-collapse collapse">
-                <div class="panel-body">
-                 Savings here vary from case to case-  for some one in the retail industry it could mean huge savings in stock and ordering
-								 ,in the Helath Industry it could mean reduced losses that come in the face of expired goods and inventory and so on,these same rule apply to Insurance and Banking sectors.
-                </div>
-              </div><!-- End Panel collapse -->
-            </div>
-          </div>
+		 <div class="container" >
+				 <div class="row">
+						 <div class="col-md-5">
+							 <p>Baahubali II's Global Popularity</p>
+							 <div id="regionschart1" style="width: 500px; height: 400px;"></div>
+						 </div>
+						 <div class="col-md-1"></div>
+						 <div class="col-md-5">
+							 <p>Dangal's Global Popularity</p>
+							 <div id="regionschart2" style="width: 500px; height: 400px;"></div>
+						 </div>
+				 </div>
+		 </div>
+			<div class="container">
+		 <section>
+			 &nbsp
+			 <p> These two movies have been hugely popular globally- BAAHUBALI-II was popular in regions around India and countries with big Indian diaspora,On the other hand DANGAL was more popular in all the major countries.
+				</p>
+			</section>
+			<section>
+		 	 &nbsp
+		 	 <p><b>Wraping up our analysis:</b> We now know that a positive word or mouth before and after the relase in addition to the
+				 massive media coverage made these two movies a pan India hit.
+				 BAAHUBALI-II fared better in India, where as DANGAL got slightly better response globally.
+		 		</p>
+		 	</section>
+		 </div>
 
-          <div class="panel panel-default">
-            <div class="panel-heading">
-              <div class="panel-title">
-                <a href="#collapse-3" data-toggle="collapse" data-parent="#accordion">
-                  How long does it take to build a data piple line?
-                </a>
-              </div><!-- End panel title -->
-              <div id="collapse-3" class="panel-collapse collapse">
-                <div class="panel-body">
-                  If there is already a mechanism to capture data,then it would take a month or two.If not setting a process and capturing fresh data could take some time.
-                </div>
-              </div><!-- End Panel collapse -->
-            </div>
-          </div>
-        </div><!-- End panel group -->
+		</div>
 
-      </section>
-    </div><!-- End container -->
 
 
 <!-- Contact -->
 
-  <div class="container">
-    <section>
-      <div class="page-header" id="contact">
-          <h2>Contact Us.<small> Contact us for more.</small></h2>
-        </div><!-- End Page Header -->
+<div class="container">
+	<section>
+		<div class="page-header" id="contact">
+				<h2>Contact Us.<small> Contact us for more.</small></h2>
+			</div><!-- End Page Header -->
 
-        <div class="row">
-          <div class="col-lg-4">
-            <p>Send us a message, or contact us from the address below</p>
-
-
-            <address>
-              <strong>The Data Bridge Pvt Ltd.</strong></br>
-              No12,1st cross </br>
-              Seetharamhiya Layout</br>
-              Bengaluru - 560022</br>
-              P:
-            </address>
-          </div>
-
-          <div class="col-lg-8">
-            <form action="" class="form-horizontal">
-              <div class="form-group">
-                <label for="user-name" class="col-lg-2 control-label">Name</label>
-                <div class="col-lg-10">
-                  <input type="text" class="form-control" id="user-name" placeholder="Enter you name">
-                </div>
-              </div><!-- End form group -->
-
-              <div class="form-group">
-                <label for="user-email" class="col-lg-2 control-label">Email</label>
-                <div class="col-lg-10">
-                  <input type="text" class="form-control" id="user-email" placeholder="Enter you Email Address">
-                </div>
-              </div><!-- End form group -->
-
-							<div class="form-group">
-								<label for="user-contact" class="col-lg-2 control-label">Contact</label>
-								<div class="col-lg-10">
-									<input type="text" class="form-control" id="user-contact" placeholder="Enter you Contact Number">
-								</div>
-							</div><!-- End form group -->
-
-              <div class="form-group">
-                <label for="user-message" class="col-lg-2 control-label">Any Message</label>
-                <div class="col-lg-10">
-                  <textarea name="user-message" id="user-message" class="form-control"
-                  cols="20" rows="10" placeholder="Enter your Message"></textarea>
-                </div>
-              </div><!-- End form group -->
-
-              <div class="form-group">
-                <div class="col-lg-10 col-lg-offset-2">
-                  <button type="button"  onclick="hk_contactus_post();" class="btn btn-primary">Submit</button>
-                </div>
-              </div>
-
-             <div id="response">  </div>
-
-            </form>
-          </div>
-        </div><!-- End the row -->
-
-    </section>
-  </div>
+			<div class="row">
+				<div class="col-lg-4">
+					<p>Send us a message, or contact us from the address below</p>
 
 
+					<address>
+						<strong>The Data Bridge Pvt Ltd.</strong></br>
+						No12,1st cross </br>
+						Seetharamhiya Layout</br>
+						Bengaluru - 560022</br>
+						P:
+					</address>
+				</div>
+
+				<div class="col-lg-8">
+					<form action="" class="form-horizontal">
+						<div class="form-group">
+							<label for="user-name" class="col-lg-2 control-label">Name</label>
+							<div class="col-lg-10">
+								<input type="text" class="form-control" id="user-name" placeholder="Enter you name">
+							</div>
+						</div><!-- End form group -->
+
+						<div class="form-group">
+							<label for="user-email" class="col-lg-2 control-label">Email</label>
+							<div class="col-lg-10">
+								<input type="text" class="form-control" id="user-email" placeholder="Enter you Email Address">
+							</div>
+						</div><!-- End form group -->
+
+						<div class="form-group">
+							<label for="user-contact" class="col-lg-2 control-label">Contact</label>
+							<div class="col-lg-10">
+								<input type="text" class="form-control" id="user-contact" placeholder="Enter you Contact Number">
+							</div>
+						</div><!-- End form group -->
+
+						<div class="form-group">
+							<label for="user-message" class="col-lg-2 control-label">Any Message</label>
+							<div class="col-lg-10">
+								<textarea name="user-message" id="user-message" class="form-control"
+								cols="20" rows="10" placeholder="Enter your Message"></textarea>
+							</div>
+						</div><!-- End form group -->
+
+						<div class="form-group">
+							<div class="col-lg-10 col-lg-offset-2">
+								<button type="button"  onclick="hk_contactus_post();" class="btn btn-primary">Submit</button>
+							</div>
+						</div>
+
+					 <div id="response">  </div>
+
+					</form>
+				</div>
+			</div>
+			<!-- End the row -->
+
+	</section>
+</div>
 
 
-	<div class="col-container">
-
-
-	  <div class="col-md-6 col-md-push-6">
-	    <h2>Column 2</h2>
-	    <p>Hello World!</p>
-	    <p>Hello World!</p>
-	    <p>Hello World!</p>
-	    <p>Hello World!</p>
-	  </div>
-
-
-	</div>
 
 <!-- Footer -->
 
@@ -294,6 +248,7 @@ Reporting is the process of organising this data into informational summaries in
 
 	<script src="bootstrap-3.3.5/jquery/jquery-3.2.1.min.js"></script>
 	<!-- Latest compiled and minified JavaScript -->
+ <script type="text/javascript" src="staticChart.js"></script>
 	<script src="bootstrap-3.3.5/dist/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="static.js"></script>
 <!-- google analytics-->
