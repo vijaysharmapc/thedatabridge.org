@@ -4,9 +4,11 @@
 google.charts.load('current', { 'packages': ['corechart'] });
 // Load the Visualization API and the line package.
 google.charts.load('current', {'packages':['line']});
-
+// Load the Visualization API and the TABLE package.
+google.charts.load('current', {'packages':['table']});
 // Set a callback to run when the Google Visualization API is loaded.
 google.charts.setOnLoadCallback(drawChart);
+google.charts.setOnLoadCallback(drawTable);
 
 //line chart
 function drawChart() {
@@ -34,12 +36,9 @@ function drawChart() {
       title: 'Movie Performance',
       subtitle: 'Show\'s moving average of interest over time- week0 is the release week'
     },
-    boxStyle: {
-      // Color of the box outline.
-      stroke: '#1B2631'
-    },
-    width: 900,
-    height: 500,
+    width: 500,
+    height: 400,
+    lineWidth: 50,
     axes: {
       x: {
         0: {side: 'bottom'}
@@ -53,6 +52,52 @@ function drawChart() {
  });
 }
 
+//table
+function drawTable() {
+
+    $.ajax({
+    type: 'GET',
+    url: 'http://databridge.info/api/bymvg',
+    success: function (data1) {
+    //alert (data1);
+    // Create our data table out of JSON data loaded from server.
+    var data = new google.visualization.DataTable();
+
+  data.addColumn('string', 'WEEK_NUMBER');
+  data.addColumn('number', 'BAAHUBALI-II');
+  data.addColumn('number', 'DANGAL');
+
+  var jsonData = $.parseJSON(data1);
+
+  for (var i = 0; i < jsonData.length; i++) {
+        data.addRow([jsonData[i].week_number, parseInt(jsonData[i].movie1), parseInt(jsonData[i].movie2)]);
+  }
+  var options = {
+
+  };
+   var table = new google.visualization.Table(document.getElementById('line_table'));
+   table.draw(data, {showRowNumber: true, width: '90%', height: '50%'});
+   }
+ });
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //geo world
 google.charts.load('current', {
     'packages':['geochart'],
@@ -62,8 +107,8 @@ google.charts.load('current', {
   });
 //  google.charts.setOnLoadCallback(drawRegionsMap1);
 //  google.charts.setOnLoadCallback(drawRegionsMap2);
-  google.charts.setOnLoadCallback(drawCityMap1);
-  google.charts.setOnLoadCallback(drawCityMap2);
+//  google.charts.setOnLoadCallback(drawCityMap1);
+//  google.charts.setOnLoadCallback(drawCityMap2);
 
 //BAAHUBALI
 function drawRegionsMap1() {
