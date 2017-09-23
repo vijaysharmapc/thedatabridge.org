@@ -154,3 +154,16 @@
 #regionschart1,#regionschart2{
   border-style: solid;
 }
+
+/*progress bar*/
+#work-in-progress {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  font-size: 150px;
+  text-align: center;
+  vertical-align: middle;
+  color: #000000;
+  z-index: 200000;
+  background-color: #FFFFFF;
+}

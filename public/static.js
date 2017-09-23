@@ -36,3 +36,13 @@ function hk_contactus_post()
     });
 
 }
+
+
+//progress bar
+$(window).bind("load", function () {
+	setTimeout(function(){
+    $("#work-in-progress").fadeOut(100);
+}, 40000)
+
+		//	$('#work-in-progress').fadeOut(100);
+	});

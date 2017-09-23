@@ -76,7 +76,7 @@ function drawTable() {
 
   };
    var table = new google.visualization.Table(document.getElementById('line_table'));
-   table.draw(data, {showRowNumber: true, width: '90%', height: '50%'});
+   table.draw(data, {showRowNumber: true, width: '80%', height: '50%'});
    }
  });
 }
@@ -91,10 +91,10 @@ google.charts.load('current', {
     // See: https://developers.google.com/chart/interactive/docs/basic_load_libs#load-settings
     'mapsApiKey': 'AIzaSyDJEVHpdrrT-pwLVT2-kw2xBzZKpXv1cfY'
   });
-  google.charts.setOnLoadCallback(drawRegionsMap1);
-  google.charts.setOnLoadCallback(drawRegionsMap2);
   google.charts.setOnLoadCallback(drawCityMap1);
   google.charts.setOnLoadCallback(drawCityMap2);
+  google.charts.setOnLoadCallback(drawRegionsMap1);
+  google.charts.setOnLoadCallback(drawRegionsMap2);
 
 //BAAHUBALI
 function drawRegionsMap1() {
