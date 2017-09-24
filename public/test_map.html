@@ -1,205 +1,274 @@
-<html>
-  <head>
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script type="text/javascript">
-      google.charts.load('current', {
-        'packages':['geochart'],
-        // Note: you will need to get a mapsApiKey for your project.
-        // See: https://developers.google.com/chart/interactive/docs/basic_load_libs#load-settings
-        'mapsApiKey': 'AIzaSyD-9tSrke72PouQMnMX-a7eZSW0jkFMBWY'
-      });
-      google.charts.load('current', { 'packages': ['corechart'] });
-      google.charts.setOnLoadCallback(drawRegionsMap);
-      google.charts.setOnLoadCallback(drawRegionsMap2);
-      google.charts.setOnLoadCallback(drawRegionsMap3);
-      google.charts.setOnLoadCallback(drawRegionsMap4);
+<!DOCTYPE html>
+<html lang="en">
 
-//BY REGION
-function drawRegionsMap() {
+<head>
+	<meta charset="utf-8">
+	<title>The Data Bridge</title>
+	<!-- If IE use the latest rendering engine -->
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+	<meta name="description" content="TheDataBridge App">
+	<meta name="viewport" content="width = device-width, initial-scale = 1">
+	<!-- Latest compiled and minified CSS -->
+	 <!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="bootstrap-3.3.5/dist/css/bootstrap.min.css">
+		<link rel="stylesheet" href="css/site.css">
 
-    $.ajax({
-    type: 'GET',
-    url: 'http://databridge.info/api/byregiond',
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="bootstrap-3.3.5/dist/css/bootstrap-theme.min.css">
+</head>
 
-  success: function (data1) {
-   //alert (data1);
-    // Create our data table out of JSON data loaded from server.
-    var data = new google.visualization.DataTable();
+	<style>
+	body{
+		padding-top: 10px;
+	}
+	</style>
 
-  data.addColumn('string', 'country');
-  data.addColumn('number', 'bahubali');
-//  data.addColumn('number', 'dangal');
+<body data-spy="scroll" data-target="#my-navbar">
 
-  var jsonData = $.parseJSON(data1);
- //alert (data1);
-  for (var i = 0; i < jsonData.length; i++) {
+  <!-- Navbar -->
 
-    if (parseInt(jsonData[i].movie1) > 0) {
-        data.addRow([jsonData[i].geoName, parseInt(jsonData[i].movie1)]);
-}
-  }
+	<nav class="navbar navbar-inverse navbar-fixed-top" id="my-navbar">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
 
-  //alert (data);
-  var options = {
-    sizeAxis: { minValue: 0, maxValue: 100 },
-    title: 'Baahubali -2\'s  reach',
-    displayMode: 'markers',
-    colorAxis: {colors: ['green','blue']} // orange to blue
-  };
 
-  //var options = {};
+			</div><!-- Navbar Header-->
+			<div class="collapse navbar-collapse" id="navbar-collapse">
 
-  var chart = new google.visualization.GeoChart(document.getElementById('regions_div'));
+				<a class="navbar-brand navbar-left" id= "logo" href="http://www.thedatabridge.org" ><img src="pictures/LOGO.png" alt="mylogo" height="35" width="75">
+				</a>
+				<ul class="nav navbar-nav">
+						<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown">CASE STUDY <span class="caret"></span></a>
+			 			 <ul class="dropdown-menu" role="menu">
+			 				<li><a href="#">Biggest Indian Movies</a></li>
+			 				<li><a href="#">Sub Menu2</a></li>
+			 				<li class="divider"></li>
+			 				<li><a href="#">Sub Menu4</a></li>
+			 				<li><a href="#">Sub Menu5</a></li>
+			 			 </ul>
+			 		 </li>
 
-  chart.draw(data, options);
-   }
- });
-}
+				</ul>
+			</div>
+		</div><!-- End Container-->
+	</nav><!-- End navbar -->
 
-//DANGAL
-function drawRegionsMap2() {
+  	<!-- jumbotron-->
+  	<div class="jumbotron">
+  		<div class="container text-center">
+  			<h1>MOST POPULAR INDIAN MOVIES EVER</h1>
+  			<p id="leftalign">Not very long back &#8377; 100 Crore(&#8377;1 Billion) was a big milestone for any movie in India.This seem to have changed recently.
+					 While some sections of media claim BAAHUBALI-II as the biggest movie,others claim, DANGAL is the biggest Indian movie by revenue.
+					 They are both block-buster movies lets find-out <b>the reason for their unprecedented success and which of the two has been more popular in India and abroad.</b> </p>
 
-    $.ajax({
-    type: 'GET',
-    url: 'http://databridge.info/api/byregiond',
-
-  success: function (data1) {
-   //alert (data1);
-    // Create our data table out of JSON data loaded from server.
-    var data = new google.visualization.DataTable();
-
-  data.addColumn('string', 'country');
-  data.addColumn('number', 'dangal');
-//  data.addColumn('number', 'dangal');
-
-  var jsonData = $.parseJSON(data1);
- //alert (data1);
-  for (var i = 0; i < jsonData.length; i++) {
-    if (parseInt(jsonData[i].movie2) > 0) {
-        data.addRow([jsonData[i].geoName, parseInt(jsonData[i].movie2)]);
-    }
-  }
-
-  //alert (data);
-  var options = {
-    sizeAxis: { minValue: 0, maxValue: 100 },
-        title: 'Dangal\'s  reach',
-    displayMode: 'markers',
-    colorAxis: {colors: ['brown','red']} // orange to blue
-  };
-
-  //var options = {};
-//https://www.telegraphindia.com/1170704/jsp/frontpage/story_160126.jsp
-  var chart = new google.visualization.GeoChart(document.getElementById('regions_div2'));
-
-  chart.draw(data, options);
-   }
- });
-}
+  			<div class="btn-group" >
+  				<a href="#citycharheading" class="btn btn-lg btn-warning">NATIONAL TRENDS&nbsp;</a>
+  				<a href="#" class="btn btn-lg btn-default">TIME SERIES</a>
+  				<a href="#regionheading" class="btn btn-lg btn-warning">GLOBAL TRENDS</a>
+  			</div>
+  		</div><!-- End container -->
+  	</div><!-- End jumbotron-->
 
 
 
+		<div id="work-in-progress">
+        <div class="work-spinner"><img src='pictures/demo_wait.gif' width="150" height="150" /></div>
+    </div>
 
-//BY CITY
+		    <div class="container">
+		        <div class="row">
+		            <div class="col-md-5">
+		              <div id="line_chart" class="chart"></div>
+		            </div>
+		            <div class="col-md-2"></div>
+		            <div class="col-md-5">
+		              <p>Popularity over normalised time line,week0 is the movie release week.</p>
+		              <div id="line_table" class="chart"></div>
+		            </div>
+		        </div>
+		    </div>
+			<div class="container">
+				 <section>
+					 &nbsp
+           <p> We measured the popularity of these two movies pan-India,and took a weighted moving average to get a smooth trendline.
+					 The trailers of both these movies were well received.Positive word of mouth after the week0(release-week) has helped both get a lot of new views and favourable media coverage.
+          </p>
+				</section>
+		  </div>
 
 
-function drawRegionsMap3() {
+     <p id="citycharheading"> </p>&nbsp
+		  <div class="container" >
+		      <div class="row">
+		          <div class="col-md-5">
+		            <p>Baahubali II's India Popularity</p>
+		            <div id="citychart1" class="chart"></div>
+		          </div>
+		          <div class="col-md-2"></div>
+		          <div class="col-md-5">
+		            <p>Dangal's India Popularity</p>
+		            <div id="citychart2" class="chart"></div>
+		          </div>
+		      </div>
+		  </div>
+			<div class="container">
+				 <section>
+					 &nbsp
+           <p> Unlike other Indian movies their popularity is not restricted to certain regions or cities <b>they are both pan India Block-Busters. </b>
+         Out of these two BAAHUBALI-II takes the lead in India,it was very well received across all major cities in India</p>
+			 </section>
+		 </div>
 
-    $.ajax({
-    type: 'GET',
-    url: 'http://databridge.info/api/bycity',
 
-  success: function (data1) {
-   //alert (data1);
-    // Create our data table out of JSON data loaded from server.
-    var data = new google.visualization.DataTable();
+     <p id="regionheading"> </p>&nbsp
 
-  data.addColumn('string', 'city');
-  data.addColumn('number', 'baahubali');
-//  data.addColumn('number', 'dangal');
+		 <div class="container" >
+				 <div class="row">
+						 <div class="col-md-5">
+							 <p>Baahubali II's Global Popularity</p>
+							 <div id="regionschart1" class="chart"></div>
+						 </div>
+						 <div class="col-md-2"></div>
+						 <div class="col-md-5">
+							 <p>Dangal's Global Popularity</p>
+							 <div id="regionschart2" class="chart"></div>
+						 </div>
+				 </div>
+		 </div>
+			<div class="container">
+		 <section>
+			 &nbsp
+			 <p> These two movies have been hugely popular globally- BAAHUBALI-II was popular in regions around India and countries with big Indian diaspora,On the other hand DANGAL was more popular in all the major countries.
+				</p>
+			</section>
+			<section>
+		 	 &nbsp
+		 	 <p><b>Wraping up our analysis:</b> We now know that a positive word or mouth before and after the relase made these two movies a pan India hit,in addition to the
+				 massive media coverage.
+				 BAAHUBALI-II fared better in India, where as DANGAL got slightly better response globally.
+		 		</p>
+		 	</section>
+		 </div>
 
-  var jsonData = $.parseJSON(data1);
- //alert (data1);
-  for (var i = 0; i < jsonData.length; i++) {
-    if (parseInt(jsonData[i].movie2) > 0) {
-        data.addRow([jsonData[i].geoName, parseInt(jsonData[i].movie1)]);
-    }
-  }
-
-  //alert (data);
-  var options = {
-    sizeAxis: { minValue: 0, maxValue: 100 },
-    region: 'IN',
-    title: 'bahubali  reach',
-    displayMode: 'markers',
-    colorAxis: {colors: ['green','blue']} // orange to blue
-  };
-
-  //var options = {};
-//https://www.telegraphindia.com/1170704/jsp/frontpage/story_160126.jsp
-  var chart = new google.visualization.GeoChart(document.getElementById('regions_div3'));
-
-  chart.draw(data, options);
-   }
- });
-}
-
-function drawRegionsMap4() {
-
-    $.ajax({
-    type: 'GET',
-    url: 'http://databridge.info/api/bycity',
-
-  success: function (data1) {
-   //alert (data1);
-    // Create our data table out of JSON data loaded from server.
-    var data = new google.visualization.DataTable();
-
-  data.addColumn('string', 'city');
-  data.addColumn('number', 'dangal');
-//  data.addColumn('number', 'dangal');
-
-  var jsonData = $.parseJSON(data1);
- //alert (data1);
-  for (var i = 0; i < jsonData.length; i++) {
-    if (parseInt(jsonData[i].movie2) > 0) {
-        data.addRow([jsonData[i].geoName, parseInt(jsonData[i].movie2)]);
-    }
-  }
-
-  //alert (data);
-  var options = {
-    sizeAxis: { minValue: 0, maxValue: 100 },
-    region: 'IN',
-    title: 'Dangal  reach',
-    displayMode: 'markers',
-    colorAxis: {colors: ['brown','red']} // orange to blue
-  };
-
-  //var options = {};
-//https://www.telegraphindia.com/1170704/jsp/frontpage/story_160126.jsp
-  var chart = new google.visualization.GeoChart(document.getElementById('regions_div4'));
-
-  chart.draw(data, options);
-   }
- });
-}
+		</div>
 
 
 
+<!-- Contact -->
 
-    </script>
-  </head>
-  <body>
-    <p>Baahubali 2's reach</p>
-    <div id="regions_div" style="width: 800px; height: 400px;"></div>
-    <p>Dangal's reach</p>
-    <div id="regions_div2" style="width: 800px; height: 400px;"></div>
-      <div id="regions_div3" style="width: 800px; height: 400px;"></div>
-        <div id="regions_div4" style="width: 800px; height: 400px;"></div>
-  </body>
+<div class="container">
+	<section>
+		<div class="page-header" id="contact">
+				<h2>Contact Us.<small> Contact us for more.</small></h2>
+			</div><!-- End Page Header -->
 
-  <script src="bootstrap-3.3.5/jquery/jquery-3.2.1.min.js"></script>
-  <script src="bootstrap-3.3.5/dist/js/bootstrap.min.js"></script>
+			<div class="row">
+				<div class="col-lg-4">
+					<p>Send us a message, or contact us from the address below</p>
 
+
+					<address>
+						<strong>The Data Bridge Pvt Ltd.</strong></br>
+						No12,1st cross </br>
+						Seetharamhiya Layout</br>
+						Bengaluru - 560022</br>
+						P:
+					</address>
+				</div>
+
+				<div class="col-lg-8">
+					<form action="" class="form-horizontal">
+						<div class="form-group">
+							<label for="user-name" class="col-lg-2 control-label">Name</label>
+							<div class="col-lg-10">
+								<input type="text" class="form-control" id="user-name" placeholder="Enter you name">
+							</div>
+						</div><!-- End form group -->
+
+						<div class="form-group">
+							<label for="user-email" class="col-lg-2 control-label">Email</label>
+							<div class="col-lg-10">
+								<input type="text" class="form-control" id="user-email" placeholder="Enter you Email Address">
+							</div>
+						</div><!-- End form group -->
+
+						<div class="form-group">
+							<label for="user-contact" class="col-lg-2 control-label">Contact</label>
+							<div class="col-lg-10">
+								<input type="text" class="form-control" id="user-contact" placeholder="Enter you Contact Number">
+							</div>
+						</div><!-- End form group -->
+
+						<div class="form-group">
+							<label for="user-message" class="col-lg-2 control-label">Any Message</label>
+							<div class="col-lg-10">
+								<textarea name="user-message" id="user-message" class="form-control"
+								cols="20" rows="10" placeholder="Enter your Message"></textarea>
+							</div>
+						</div><!-- End form group -->
+
+						<div class="form-group">
+							<div class="col-lg-10 col-lg-offset-2">
+								<button type="button"  onclick="hk_contactus_post();" class="btn btn-primary">Submit</button>
+							</div>
+						</div>
+
+					 <div id="response">  </div>
+
+					</form>
+				</div>
+			</div>
+			<!-- End the row -->
+
+	</section>
+</div>
+
+
+
+<!-- Footer -->
+
+    <footer>
+      <hr>
+        <div class="container text-center">
+
+        <ul class="list-inline">
+          <li><a href="https://twitter.com/swap_barter">Twitter</a></li>
+          <li><a href="https://www.facebook.com/TheDataBridgeorg-1443324982422929/">Facebook</a></li>
+          <li><a href="https://www.linkedin.com/company-beta/13401355/admin/updates/">LinkedIn</a></li>
+        </ul>
+
+        <p> Copyright &copy; thedatabridge.org 2017</p>
+
+      </div><!-- end Container-->
+
+
+    </footer>
+
+		<script src="jQuery-plugin-progressbar.js"></script>
+
+	<script src="bootstrap-3.3.5/jquery/jquery-3.2.1.min.js"></script>
+	<!-- Latest compiled and minified JavaScript -->
+ <script type="text/javascript" src="test.js"></script>
+	<script src="bootstrap-3.3.5/dist/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="static.js"></script>
+<!-- google analytics-->
+	<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-105772082-1', 'auto');
+  ga('send', 'pageview');
+<!-- google end -->
+</script>
+
+</body>
 </html>

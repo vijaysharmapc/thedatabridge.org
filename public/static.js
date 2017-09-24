@@ -42,7 +42,7 @@ function hk_contactus_post()
 $(window).bind("load", function () {
 	setTimeout(function(){
     $("#work-in-progress").fadeOut(100);
-}, 40000)
+}, 10000)
 
 		//	$('#work-in-progress').fadeOut(100);
 	});
