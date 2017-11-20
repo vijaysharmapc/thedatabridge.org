@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Blog Post - The Data Bridge</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/blog-post.css" rel="stylesheet">
+
+  </head>
+
+  <body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="#">TheDataBridge.org</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="#">Home
+                <span class="sr-only">(current)</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">About</a>
+            </li>
+
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Page Content -->
+    <div class="container">
+
+      <div class="row">
+
+        <!-- Post Content Column -->
+        <div class="col-lg-8">
+
+          <!-- Title -->
+          <h1 class="mt-4">TERADATA HACKS</h1>
+
+          <!-- Author -->
+          <p class="lead">
+            by
+            <a href="#">thedatabridge.org</a>
+          </p>
+
+          <hr>
+
+          <!-- Date/Time -->
+          <p>Posted on Sep 1, 2017 at 12:00 PM</p>
+
+          <hr>
+
+          <!-- Preview Image -->
+          <img class="img-fluid rounded" src="pictures/TERADATA.png" alt="">
+
+          <hr>
+
+          <h2> TERADATA FUNCTIONS AND OLAP:</h2>
+          <p class="lead">Teradata has been in the data managment business for quiet some time now,their platform is made up of Teradata Data Warehouse,Database,set of analytic tools and Big Data.
+          In this blog we would focus on Analytical functions and OLAP,we will try and cover things beyond the SUM ,COUNT,MAX,MIN and other commonly used functions.</p>
+          <h3> Audience & Content Source: </h3>
+          <p class="lead">Application programmers,administrators and end users are the principal audience for this blog.Other technical personnel responsible for designing, maintaining, and using Teradata
+          Database might also find this manual to be useful.A lot of content has been sourced form db books and Teradata manuals.</p>
+
+          <h3>DATA FUNCTIONS</h3>
+          <p class="lead">ABS:</p> <p>Computes the absolute value of an argument.</p>
+      <div class = "code-snippet">
+      <pre><code>
+      SELECT ABS(5-10);
+      5
+      </code></pre>
+      </div>
+
+
+          <p>This comes handy when we need to apply business rules, and are have to eliminate negative values.</p>
+          <p class="lead">FLOOR: </p> <p>Returns the following values:
+          the next largest integer that is equal to or less than arg.
+          The input argument arg in case of exact number.CEILING Returns the smallest integer that is not less than the input argument.</p>
+          <div class = "code-snippet">
+          <pre><code>
+        SELECT CEILING(10.455);
+        11
+        SELECT FLOOR(6.5);
+        6
+          </code></pre>
+          </div>
+
+          <p class="lead">Dealing with Nulls:</p> <p> In this example, you can test the Salary column for null.</p>
+          <div class = "code-snippet">
+          <pre><code>
+          SELECT empno, ZEROIFNULL(salary)
+          FROM employee ;
+          All NULL values in the salary field will be relaced by 0 in the result-set.
+          </code></pre>
+          </div>
+
+          <p class="lead">DATE MANIPULATIONS:</p>
+          <p>Adding DAY/MONTH/YEAR TO A DATE</p>
+          <div class = "code-snippet">
+        <pre><code>
+        SELECT DATE '2017-10-28' + INTERVAL '1' DAY;
+        29/10/2017
+
+        SELECT DATE '2017-10-28' + INTERVAL '1' MONTH;
+        28/11/2017
+
+        SELECT DATE '2017-10-28' + INTERVAL '1' YEAR;
+        28/10/2018
+        </code></pre>
+        </div>
+
+          <p class="lead">CASE EXPRESSION:</p>
+          <p>We have an example that shows how using a CASE expression can result in significantly
+          enhanced performance by eliminating multiple passes over the data. Without using CASE,
+          you would have to perform multiple queries for each region and then consolidate the answers
+          to the individual queries in a final report.</p>
+
+          <div class = "code-snippet">
+          <pre><code>
+    SELECT item_number, SUM(CASE
+    WHEN Class_desc='JUICE'
+    THEN xsa_saved_nws
+    ELSE 0
+    END) AS JUICE,
+    SUM(CASE
+    WHEN Class_desc='SNACKS'
+    THEN xsa_saved_nws
+    ELSE 0
+    END) AS SNACKS,
+    SUM(CASE
+    WHEN Class_desc LIKE 'LIQUID MILK'
+    THEN xsa_saved_nws
+    ELSE 0
+    END)
+    AS MILK, MILK/SUM(xsa_saved),
+    SUM(xsa_saved)
+    FROM db.store_data_set
+    WHERE item_number IN ('P20000511','P10069661','P10370319','P10370320','P10370381')
+
+    GROUP BY item_number;
+          </code></pre>
+          </div>
+
+
+<img class="img-fluid rounded" src="pictures/case.png" alt=""> </img>
+
+<p> </p>
+<p class="lead">CASE IN PARTITIONING:</p>
+<p>Here is an example that uses CASE_N and the value of the totalorders column to define the partition to which a row is assigned:</p>
+<div class = "code-snippet">
+<pre><code>
+ CREATE TABLE orders
+  (storeid INTEGER NOT NULL
+  ,productid INTEGER NOT NULL
+  ,orderdate DATE FORMAT 'yyyy-mm-dd' NOT NULL
+  ,totalorders INTEGER)
+  PRIMARY INDEX (storeid, productid)
+  PARTITION BY CASE_N(totalorders < 100, totalorders < 1000,
+  NO CASE, UNKNOWN);
+
+<p> In the example, CASE_N specifies four partitions to which a row can be assigned, based on the
+value of the totalorders column.</p>
+
+</code></pre>
+</div>
+
+<h2>Teradata Warehouse Miner </h2>
+<p class="lead">includes approximately 40 predefined data mining functions in
+SQL based on the Teradata SQL-specific functions. For example, the Teradata Warehouse
+Miner FREQ function uses the Teradata SQL-specific functions RANK,CSUM and QUALIFY
+to determine frequencies.</p>
+
+<p class="lead">DENSE_RANK:</p>
+<p>Calculates the number of proceeding distinct values, plus one. If multiple rows have
+equal values, they all get the same rank, but there are no gaps. Each change in data value causes the
+ranking number to be incremented by one. Its not implemented in Teradata (probably because of performance reasons), but can be rewritten.
+For example in normal Ranking operation if two items have same marks, they both would be given the same Rank, say 1.Now the next item would be given Rank 3 in regular ranking operation.
+In Dense Rank this item would be given Rank 2.</p>
+<div class = "code-snippet">
+<pre><code>
+  SELECT
+  item_number,
+  sales,
+  DENSE_RANK() OVER (PARTITION BY offer_number ORDER BY sales) as DNS_RNK
+  FROM
+  DB.ntnl_fcasts
+  order by DNS_RNK;
+</code></pre>
+</div>
+
+<pre><code>
+<samp class="output">
+item_number	|sales|	DNS_RNK
+P20001828	  |0.222|	1
+P20001828	  |0.222|	1
+P10069349	  |0.418|	2
+P10069349	  |0.418|	2
+P10069349	  |0.764|	3
+P10069349	  |0.764|	3
+P10069349	  |0.818|	4
+P10069349	  |0.818|	4
+P10069349	  |0.866|	5
+</samp>
+</code></pre>
+
+In  Rank this item would not be given Rank 2 & 3.</p>
+<div class = "code-snippet">
+<pre><code>
+  SELECT
+  item_number,
+  sales,
+  RANK() OVER (PARTITION BY offer_number ORDER BY sales) as DNS_RNK
+  FROM
+  DB.ntnl_fcasts
+  order by RNK;
+</code></pre>
+</div>
+
+<pre><code>
+<samp class="output">
+  item_number	  sales	RNK
+  P20001828	      5	  1
+  P20001828	      5	  1
+  P20001828	      5	  1
+  P20001828	      6	  4
+  P10069349	      6	  4
+  P10069349	      12  7
+</samp>
+</code></pre>
+
+<p class="lead">CSUM:</p>
+<p> This command uses the first parameter as the column containing a numeric value to sum. This value will be added to the previous data values and provide a running or cumulative answer.</p>
+
+<div class = "code-snippet">
+<pre><code>
+  SELECT
+  DEPT,
+  WEEK_START_DATE,
+  ZONE_NUMBER,
+  COUNTRY_CODE,
+  EXP_WEEKLY_SALES,
+  CSUM(EXP_WEEKLY_SALES,DEPT) CUSUM
+  FROM DB.BASE_WEEKLY
+  WHERE ZONE_NUMBER= 8046 AND WEEK_START_DATE='2017-08-14';
+ </code></pre>
+ </div>
+<img class="img-fluid rounded" src="pictures/case1.png" alt=""> </img>
+
+<p> </p>
+<p class="lead">MAVG:</p>
+<p> This command uses the first parameter as the column containing a numeric value to average.
+The second parameter used by the MAVG is the width number. It represents the number of rows included in the summation. Valid values are from 1 to 4096.</p>
+<div class = "code-snippet">
+<pre><code>
+   SELECT
+   DEPT,
+   WEEK_START_DATE,
+   store_NUMBER,
+   COUNTRY_CODE,
+   EXP_WEEKLY_SALES,
+   MAVG(EXP_WEEKLY_SALES,10,WEEK_START_DATE) MOAVG
+    FROM APPLICATION_STAGING_RDFSERVICE.BASE_FORECAST_WEEKLY_S
+    WHERE store_NUMBER= 2046 AND SUBGROUP LIKE 'F1%' AND WEEK_START_DATE >='2017-08-14' AND EXP_WEEKLY_SALES>200;
+  </code></pre>
+  </div>
+
+  <pre><code>
+  <samp class="output">
+ DEPT	 WEEK_START_DATE	STORE_NUMBER	COUNTRY_CODE	EXP_WEEKLY_SALES	MOAVG
+  D15AC	     14/08/2017	      9046	          BR	         445.60	       445.6000000000
+  D16CA	     14/08/2017	      9046	          BR	         379.47	       412.5350000000
+  D15SH	     14/08/2017	      9046	          BR	         730.71	       518.5933333333
+  D11YM	     14/08/2017	      9046	          BR	         500.71	       514.1225000000
+  D15BA	     14/08/2017	      9046	          BR	         366.77	       484.6520000000
+  D15SC	     14/08/2017	      9046	          BR	         242.62	       444.3133333333
+  D13AG	     14/08/2017	      9046	          BR	         1132.14       542.5742857143
+  D15DM	     14/08/2017	      9046	          BR	         342.22	       517.5300000000
+  D11WC	     14/08/2017	      9046	          BR	         480.96	       513.4666666667
+  D16DC	     14/08/2017	      9046	          BR	         420.17	       504.1370000000
+</samp>
+</code></pre>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          <div class="card my-4">
+            <h5 class="card-header">Leave a Comment:</h5>
+            <div class="card-body">
+              <form>
+                <div class="form-group">
+                  Email <input type="text" name="fname"><br>
+                  &nbsp;
+                  <textarea class="form-control" rows="3"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </form>
+            </div>
+          </div>
+
+
+
+
+
+
+
+
+
+
+<!--          <blockquote class="blockquote">
+            <p class="mb-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+            <footer class="blockquote-footer">Someone famous in
+              <cite title="Source Title">Source Title</cite>
+            </footer>
+          </blockquote>
+
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error, nostrum, aliquid, animi, ut quas placeat totam sunt tempora commodi nihil ullam alias modi dicta saepe minima ab quo voluptatem obcaecati?</p>
+
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum, dolor quis. Sunt, ut, explicabo, aliquam tenetur ratione tempore quidem voluptates cupiditate voluptas illo saepe quaerat numquam recusandae? Qui, necessitatibus, est!</p>
+
+          <hr>
+
+
+
+
+          <div class="media mb-4">
+            <img class="d-flex mr-3 rounded-circle" src="" alt="">
+            <div class="media-body">
+
+              <h5 class="mt-0">Commenter Name
+<button type="submit" class = "btn btn-link btn-lg">Like 122</button>
+<button type="submit" class = "btn btn-link btn-lg">Unlike 4</button>
+</h5>
+
+              Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+            </div>
+          </div>
+
+
+          <div class="media mb-4">
+            <img class="d-flex mr-3 rounded-circle" src="" alt="">
+            <div class="media-body">
+              <h5 class="mt-0">Commenter Name</h5>
+              Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+
+            </div>
+          </div>
+-->
+        </div>
+
+        <!-- Sidebar Widgets Column -->
+        <div class="col-md-4">
+
+          <!-- Search Widget
+          <div class="card my-4">
+            <h5 class="card-header">Search</h5>
+            <div class="card-body">
+              <div class="input-group">
+                <input type="text" class="form-control" placeholder="Search for...">
+                <span class="input-group-btn">
+                  <button class="btn btn-secondary" type="button">Go!</button>
+                </span>
+              </div>
+            </div>
+          </div>
+-->
+          <!-- Categories Widget -->
+          <div class="card my-4">
+            <h5 class="card-header">HACK LIST</h5>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-lg-6">
+                  <ul class="list-unstyled mb-0">
+                    <li>
+                      <a href="#">TERADATA</a>
+                    </li>
+                    <li>
+                      <a href="#">MY-SQL</a>
+                    </li>
+                  </ul>
+                </div>
+                <div class="col-lg-6">
+                  <ul class="list-unstyled mb-0">
+                    <li>
+                      <a href="#">PYTHON</a>
+                    </li>
+                    <li>
+                      <a href="advanced_excel.html">MS-EXCEL</a>
+                    </li>
+
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Side Widget -->
+          <div class="card my-4">
+            <h5 class="card-header">Hay there!</h5>
+            <div class="card-body">
+              Please feel free to add comments and data hacks,in the respective topic pages.
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+      <!-- /.row -->
+
+    </div>
+    <!-- /.container -->
+
+    <!-- Footer -->
+    <footer class="py-5 bg-dark">
+      <div class="container">
+        <p class="m-0 text-center text-white">Copyright &copy; thedatabridge.org 2017</p>
+
+    <p class="m-0 text-center text-white"> <a href="https://twitter.com/swap_barter">Twitter</a> 	&nbsp;
+    <a href="https://www.facebook.com/TheDataBridgeorg-1443324982422929/">Facebook </a> 	&nbsp;
+    <a href="https://www.linkedin.com/company-beta/13401355/admin/updates/">LinkedIn </a> </p>
+
+      </div>
+
+
+
+      <!-- /.container -->
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/popper/popper.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+    <!-- google analytics-->
+    	<script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-105772082-1', 'auto');
+      ga('send', 'pageview');
+    <!-- google end -->
+    </script>
+
+  </body>
+
+</html>
