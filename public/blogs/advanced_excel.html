@@ -52,7 +52,7 @@
         <div class="col-lg-8">
 
           <!-- Title -->
-          <h1 class="mt-4">ADVANCED EXCEL,ONE STOP</h1>
+          <h1 class="mt-4">ADVANCED EXCEL-HACKS</h1>
 
           <!-- Author -->
           <p class="lead">
@@ -114,16 +114,40 @@
           <p class="lead" >Click on “Format as Table” to format this table layout and enable a new tab called Table Tools.
           You can hear Name the table, insert Pivot, Slicer etc. We will touch on these topics later.</p>
           <img class="img-fluid rounded" src="pictures/excel1.4.jpg" alt="">
+          <p>&nbsp;</p>
+          <img class="img-fluid rounded" src="pictures/excel4.jpg" alt="">
+          <p class="lead" >The Formulas tab has a lot going on in it, it is very important that you refer this- especially in your initial days of learning Excel.Let’s get familiar with the Formulas tab and the functionalities that it has to offer.</p>
+          <p class="lead" >
+          Sum up the total cases and death using fields defined as “NAME”.
+          Select the table range and click on “CREATE FROM SELECTION”
+          then select top rows,this adds named ranges with th table field as the NAME.Then click on Name Manager to see and modify the Names. </p>
+          <img class="img-fluid rounded" src="pictures/excel4.1.jpg" alt="">
+          <img class="img-fluid rounded" src="pictures/excel4.2.jpg" alt="">
+          <p class="lead" >
+             Type this in any cell "=SUM(CASES)",you will get a result of 470,572,which is same as "=SUM(D2:D176)".
+             So what did we just do? Named range have their own benefits- you don’t have to redefine range when you copy paste formula, don’t have to change $ around the range and is easy to understand.
+             Now try:=SUM(DEATH)</p>
+          <img class="img-fluid rounded" src="pictures/excel4.3.jpg" alt="">
           <p></p>
-
-
+          <div class = "code-snippet">
+          <pre><code>
+            Copy and paste these formulas in range H3 to H9, and label them accordingly.
+            =COUNTA(CASES)             =SUM(CASES)
+            =AVERAGE(CASES)            =MAX(CASES)
+            =MIN(CASES)                =COUNTIF(CASES,">0")
+            =H8/H3
+            Once done, do the same with DEATH named field.
+            </code></pre>
+            </div>
+          <p class="lead" >Number format and table format to make your DATA STATS table look better.
+          Play around with other features in this tab like Trace Precidence and Dependents and see what happens. </p>
+          <p>Exercise: Create a summary of the number of CASES by year having DEATH more than 0 and then more than 10.</p>
+          <img class="img-fluid rounded" src="pictures/excel4.4.jpg" alt="">
 
 
           <img class="img-fluid rounded" src="pictures/excel2.jpg" alt="">
           <p class="lead" >Let's cover all the important featuers that you would use in each tab.</p>
           <img class="img-fluid rounded" src="pictures/excel3.jpg" alt="">
-          <p class="lead" >Let's cover all the important featuers that you would use in each tab.</p>
-          <img class="img-fluid rounded" src="pictures/excel4.jpg" alt="">
           <p class="lead" >Let's cover all the important featuers that you would use in each tab.</p>
           <img class="img-fluid rounded" src="pictures/excel5.jpg" alt="">
           <p class="lead" >Let's cover all the important featuers that you would use in each tab.</p>
