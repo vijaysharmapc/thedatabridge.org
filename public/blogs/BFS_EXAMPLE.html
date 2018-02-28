@@ -30,7 +30,7 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item active">
-              <a class="nav-link" href="#">Home
+              <a class="nav-link" href="/index.html">Home
                 <span class="sr-only">(current)</span>
               </a>
             </li>
@@ -57,7 +57,7 @@
           <!-- Author -->
           <p class="lead">
             by
-            <a href="http://www.thedatabridge.org">thedatabridge.org</a>
+            <a href="/index.html">thedatabridge.org</a>
           </p>
 
           <hr>
@@ -80,7 +80,7 @@
             Let's implement Breadth First Search(BFS) on PYSPARK using map and reduce.</p>
 
           <h3>DATA SET</h3>
-          <p>Say we have a list of people and the friends they are connected with on LinkedIn.
+          <p class="lead">Say we have a list of people and the friends they are connected with on LinkedIn.
           You want to find out what is the degree of separation between  users with id 5000 and 2000 ?</p>
       <div class = "code-snippet">
       <pre><code>
@@ -101,23 +101,23 @@
 
       </code></pre>
       </div>
-      <p> Let's put the userid's in the form of a graph.There are 3 distinct layers or degrees of sepration
+    <p class="lead"> Let's put the userid's in the form of a graph.There are 3 distinct layers or degrees of sepration
       here,each layer is a step of value one;we can say that user 5000 and 2000
     are three degrees of separation away.
     As the name BFS suggests we first move horizontally and visit all the nodes of the current layer,we
     then move to the next layer.
     As we traverse we add a distance or hop of 1 to each layer and we color the node,to indicate that it has been taken-care of.
 </p>
-    <p>You can imagine if the nodes (each user and his friends) are very large,it becomes impossible to traverse this graph on a single machine,let alone do it manually.</p>
+    <p class="lead">You can imagine if the nodes (each user and his friends) are very large,it becomes impossible to traverse this graph on a single machine,let alone do it manually.</p>
       <img class="img-fluid rounded" src="pictures/DOS.png" alt="">
-      <p>Here is a graphical simulation of the algorithm.We first grey out  startUserId ,update the distance
+      <p class="lead">Here is a graphical simulation of the algorithm.We first grey out  startUserId ,update the distance
       then process all it's connections and so on.</p>
       <img class="img-fluid rounded" src="pictures/BFS1.gif" alt="">
 
 
 
 
-      <p> Open your favourate spark editor and put the below lines of code.Using this algorithm we can ascertain if there is indeed a maximum of 6 degrees of separation between any 2 people,out of the 7.5 billion population on this planet!! ;Provided
+      <p class="lead"> Open your favourate spark editor and put the below lines of code.Using this algorithm we can ascertain if there is indeed a maximum of 6 degrees of separation between any 2 people,out of the 7.5 billion population on this planet!! ;Provided
       we figure out how to get all the connections.
      </p>
       <!--
